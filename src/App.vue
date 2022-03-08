@@ -1,28 +1,34 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <MusicHeader />
+    <router-view></router-view>
+    <mv-list></mv-list>
+    <MusicPlayer />
+    <MusicFooter />
   </div>
 </template>
-
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+//网站顶栏组件
+import MusicHeader from "./components/MusicHeader.vue";
+//网站底栏组件
+import MusicFooter from "./components/MusicFooter.vue";
+//音乐播放器组件
+import MusicPlayer from "./page/MusicPlayer.vue";
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    MusicHeader,
+    MusicFooter,
+    MusicPlayer,
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+* {
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  list-style: none;
 }
 </style>
