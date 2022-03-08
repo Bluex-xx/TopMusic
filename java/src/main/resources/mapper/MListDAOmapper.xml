@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.musicall.dao.MListDAO">
+    <select id="listall" parameterType="MList" resultType="MList">
+        select * from mlist where uid=#{uid}
+    </select>
+    <insert id="insert" parameterType="MList">
+        insert into mlist(name,uid) values(#{name},#{uid})
+    </insert>
+    <select id="findsame" parameterType="MList" resultType="MList">
+        select * from mlist where uid=#{uid} and name=#{name}
+    </select>
+    <select id="findbymid" parameterType="MList" resultType="Music">
+        select m.* from music m,mlist u where u.mid=#{mid} and u.uid=#{uid} and m.id=u.id
+    </select>
+    <select id="findmid" parameterType="MList" resultType="Integer">
+        select mid from mlist where uid=#{uid} and name=#{name}
+    </select>
+</mapper>

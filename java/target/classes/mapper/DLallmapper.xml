@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.musicall.dao.DLallDAO">
+    <select id="findbymid" parameterType="Integer" resultType="Music">
+        select m.* from music m,dlall d where d.mid=#{mid} and m.id=d.id
+    </select>
+    <insert id="insert" parameterType="DLall">
+        insert into dlall(mid,id) values(#{mid},#{id})
+    </insert>
+    <select id="findsame" parameterType="DLall" resultType="DLall">
+        select * from dlall where mid=#{mid} and id=#{id}
+    </select>
+</mapper>

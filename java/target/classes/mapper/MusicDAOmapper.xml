@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.musicall.dao.MusicDAO">
+
+    <resultMap id="gbstyle" type="com.musicall.entity.Music">
+        <id property="style" column="style"></id>
+        <result property="style" column="style"></result>
+        <collection property="musicList" ofType="com.musicall.entity.Music">
+            <result property="name" column="name" />
+            <result property="artist" column="artist"/>
+            <result property="id" column="id" />
+            <result property="cover" column="cover" />
+            <result property="url" column="url" />
+            <result property="style" column="style" />
+        </collection>
+    </resultMap>
+    <select id="findall" resultMap="gbstyle">
+        select * from music
+    </select>
+    <select id="findrandom" resultType="Music">
+        select * from music order by RAND() limit 15
+    </select>
+</mapper>

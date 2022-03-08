@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.musicall.dao.UMusicDAO">
+
+    <insert id="insert" parameterType="UMusic">
+        insert into umusic(id,uid,mid) values(#{id},#{uid},#{mid})
+    </insert>
+    <select id="findsame" parameterType="UMusic" resultType="UMusic" >
+        select * from umusic where mid=#{mid}and uid=#{uid} and id=#{id}
+    </select>
+    <select id="findsame2" parameterType="UMusic" resultType="UMusic">
+        select * from umusic where uid=#{uid} and id=#{id}
+    </select>
+    <update id="update" parameterType="UMusic">
+        <if test="status==0">
+            update umusic set orde=orde+1 where uid=#{uid}
+        </if>
+        <if test="status==1">
+            update umusic set orde=orde+1 where uid=#{uid} and orde &lt; #{orde}
+        </if>
+    </update>
+    <insert id="insert2" parameterType="UMusic">
+        insert into umusic(id,uid,orde) values(#{id},#{uid},1)
+    </insert>
+    <select id="playlist" parameterType="UMusic" resultType="Music">
+        select m.* from umusic u,music m where u.uid=#{uid} and m.id=u.id order by orde
+    </select>
+    <update id="update2" parameterType="UMusic">
+        update umusic set orde=1 where id=#{id} and uid=#{uid}
+    </update>
+</mapper>
